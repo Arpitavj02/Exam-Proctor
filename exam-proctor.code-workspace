@@ -1,0 +1,57 @@
+{
+  "folders": [
+    { "path": "." }
+  ],
+  "settings": {
+    "python.defaultInterpreterPath": "./backend/venv/Scripts/python",
+    "python.terminal.activateEnvironment": true,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/node_modules": true,
+      "**/.git": true,
+      "**/venv": true
+    }
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "🐍 Flask Backend",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/backend/app.py",
+        "console": "integratedTerminal",
+        "cwd": "${workspaceFolder}/backend",
+        "env": { "FLASK_ENV": "development" }
+      }
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Start Backend",
+        "type": "shell",
+        "command": "cd backend && venv/Scripts/activate && python app.py",
+        "group": "build",
+        "presentation": { "panel": "new" }
+      },
+      {
+        "label": "Start Frontend",
+        "type": "shell",
+        "command": "cd frontend && npm start",
+        "group": "build",
+        "presentation": { "panel": "new" }
+      },
+      {
+        "label": "Install All Dependencies",
+        "type": "shell",
+        "command": "cd backend && python -m venv venv && venv/Scripts/activate && pip install -r requirements.txt && cd ../frontend && npm install",
+        "group": "build",
+        "presentation": { "panel": "new" }
+      }
+    ]
+  }
+}
